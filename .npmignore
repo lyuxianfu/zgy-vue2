@@ -1,0 +1,13 @@
+node_modules/
+src/
+public/
+.browserslistrc
+vue.config.js
+babel.config.js
+*.map
+lib/components/demo.html
+lib/components/index.common.js
+lib/store/demo.html
+lib/store/index.common.js
+lib/utils/demo.html
+lib/utils/index.common.js
