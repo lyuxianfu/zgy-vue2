@@ -1,20 +1,29 @@
 export const ZStore = {
   state: {
-    test: [],
+    totalCount: 0,
+    dataList: [],
+    loading: false,
   },
   getters: {
-    test(state) {
-      return state.test;
+    totalCount(state) {
+      return state.totalCount;
+    },
+    dataList(state) {
+      return state.dataList;
+    },
+    loading(state) {
+      return state.loading;
     },
   },
   mutations: {
-    setTest(state, data) {
-      state.test = data;
+    setTotalCount(state, data) {
+      state.totalCount = data;
     },
-  },
-  actions: {
-    setTestSync({ commit }, data) {
-      commit("setTest", data);
+    setDataList(state, data) {
+      state.dataList = data;
+    },
+    setLoading(state, data) {
+      state.loading = data;
     },
   },
 };
