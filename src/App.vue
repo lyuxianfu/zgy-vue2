@@ -1,18 +1,83 @@
 <template>
-  <div id="app">
-    <ZTable></ZTable>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    {{ $store.getters.test }}
-  </div>
+  <el-container>
+    <el-header>
+      <el-form :inline="true">
+        <el-form-item>
+          <el-select v-model="formData.sex">
+            <el-option
+              v-for="(item, index) in sex"
+              :label="item.label"
+              :value="item.type"
+              :key="index"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-input v-model="formData.name" placeholder="姓名"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-input v-model="formData.age" placeholder="年龄"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="list.onSearch()">查询</el-button>
+        </el-form-item>
+        <el-form-item>
+          <el-button @click="list.onReset()">重置</el-button>
+        </el-form-item>
+      </el-form>
+    </el-header>
+    <ZTab
+      :tabs="[{ title: '一楼' }, { title: '二楼' }]"
+      @handleTab="handleTab"
+    ></ZTab>
+    <el-main>
+      <ZTable table-height="calc(100vh - 160px)">
+        <el-table-column label="序号" type="index"></el-table-column>
+        <el-table-column label="姓名" prop="name"></el-table-column>
+        <el-table-column label="性别" prop="sex"></el-table-column>
+        <el-table-column label="年龄" prop="age"></el-table-column>
+      </ZTable>
+    </el-main>
+    <Zpagination
+      @onChangePageSize="list.onchangePageSize()"
+      @onChangePage="list.onChangePage()"
+    ></Zpagination>
+  </el-container>
 </template>
 
 <script>
+import List from "@/utils/List";
+import { fetch } from "@/api";
 export default {
   name: "App",
+  components: {},
+
+  data() {
+    return {
+      sex: [
+        { type: 0, label: "全部" },
+        { type: 1, label: "男" },
+        { type: 2, label: "女" },
+      ],
+      formData: {
+        name: "",
+        age: "",
+        sex: "",
+      },
+      list: null,
+    };
+  },
   created() {
-    setInterval(() => {
-      this.$store.dispatch("setTestSync", Math.random());
-    }, 2000);
+    this.list = new List(this.formData, fetch, "request", (res) => {
+      console.log(res);
+      console.log(this.formData);
+    });
+  },
+  methods: {
+    handleTab(tab) {
+      console.log(tab);
+      this.list.onSearch();
+    },
   },
 };
 </script>
