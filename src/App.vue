@@ -38,10 +38,10 @@
         <el-table-column label="年龄" prop="age"></el-table-column>
       </ZTable>
     </el-main>
-    <Zpagination
-      @onChangePageSize="list.onchangePageSize()"
-      @onChangePage="list.onChangePage()"
-    ></Zpagination>
+    <!--    <Zpagination-->
+    <!--      @onChangePageSize="list.onchangePageSize()"-->
+    <!--      @onChangePage="list.onChangePage()"-->
+    <!--    ></Zpagination>-->
   </el-container>
 </template>
 

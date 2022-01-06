@@ -1,29 +1,38 @@
 export const ZStore = {
   state: {
-    totalCount: 0,
-    dataList: [],
-    loading: false,
+    page: {
+      app: {
+        dataList: [],
+        loading: false,
+      },
+    },
   },
   getters: {
-    totalCount(state) {
-      return state.totalCount;
+    app(state) {
+      return state.page.app;
     },
-    dataList(state) {
-      return state.dataList;
-    },
-    loading(state) {
-      return state.loading;
+    page(state) {
+      return state.page;
     },
   },
   mutations: {
-    setTotalCount(state, data) {
-      state.totalCount = data;
-    },
-    setDataList(state, data) {
-      state.dataList = data;
+    createPage(state, data) {
+      state.page[data] = {
+        dataList: [],
+        loading: true,
+        totalCount: 0,
+      };
     },
     setLoading(state, data) {
-      state.loading = data;
+      console.log("--->");
+      console.log(state, data);
+      state.page[data.pageName].loading = data.value;
+    },
+    setDataList(state, data) {
+      state.page[data.pageName].dataList = data.value;
+    },
+    setTotalCount(state, data) {
+      state.page[data.pageName].totalCount = data.value;
     },
   },
 };

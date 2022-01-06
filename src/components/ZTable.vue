@@ -1,8 +1,8 @@
 <template>
   <el-table
     ref="tableSort"
-    v-loading="loading"
-    :data="list.length !== 0 ? list : dataList"
+    v-loading="$store.getters.page[pageName].loading"
+    :data="$store.getters.page[pageName].dataList"
     :height="tableHeight"
     :element-loading-text="dataLoadingText"
     style="width: 100%"
@@ -14,8 +14,6 @@
 </template>
 
 <script>
-import setting from "@/utils/setting";
-import store from "@/store";
 export default {
   name: "ZTable",
   props: {
@@ -33,14 +31,13 @@ export default {
         return [];
       },
     },
+    pageName: {
+      type: String,
+      default: "app",
+    },
   },
-  computed: {
-    loading: () => {
-      return store.getters[setting.loading];
-    },
-    dataList: () => {
-      return store.getters[setting.dataList];
-    },
+  created() {
+    console.log(this.pageName);
   },
   methods: {
     onSelect(data) {

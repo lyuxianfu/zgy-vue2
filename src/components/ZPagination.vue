@@ -1,7 +1,7 @@
 <template>
   <el-pagination
     style="text-align: right"
-    :total="totalCount"
+    :total="$store.getters.page[pageName].totalCount"
     :page-sizes="[10, 20, 50, 100]"
     :page-size="defautlPageSize"
     layout="total, sizes, prev, pager, next, jumper"
@@ -11,19 +11,16 @@
 </template>
 
 <script>
-import setting from "@/utils/setting";
-import store from "@/store";
 export default {
   name: "Zpagination",
   props: {
+    pageName: {
+      type: String,
+      default: "",
+    },
     defautlPageSize: {
       type: Number,
       default: 10,
-    },
-  },
-  computed: {
-    totalCount() {
-      return store.getters[setting.totalCount];
     },
   },
   methods: {

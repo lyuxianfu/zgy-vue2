@@ -11,3 +11,5 @@ lib/store/demo.html
 lib/store/index.common.js
 lib/utils/demo.html
 lib/utils/index.common.js
+lib/index.common.js
+lib/demo.html

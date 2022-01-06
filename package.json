@@ -1,15 +1,15 @@
 {
   "name": "zgy-vue2",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "bulid:store": "vue-cli-service build --target lib --name index --dest lib/store src/store/ZStore/index.js",
     "bulid:components": "vue-cli-service build --target lib --name index --dest lib/components src/components/index.js",
-    "bulid:utils": "vue-cli-service build --target lib --name index --dest lib/utils src/utils/index.js",
-    "bulid:lib": "npm run bulid:store && npm run bulid:components && npm run bulid:utils"
+    "bulid:store": "vue-cli-service build --target lib --name index --dest lib/store src/store/ZStore/index.js",
+    "bulid:utils": "vue-cli-service build --target lib --name index --dest lib/utils src/utils/Page.js",
+    "bulid:lib": "npm run bulid:components && npm run bulid:store && npm run bulid:utils"
   },
   "dependencies": {
     "core-js": "^3.6.5",
