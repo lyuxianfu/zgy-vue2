@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "Zpagination",
+  name: "ZPagination",
   props: {
     pageName: {
       type: String,
