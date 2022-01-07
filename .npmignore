@@ -16,3 +16,4 @@ lib/demo.html
 .idea
 .eslintignore
 .eslintrc.js
+yarn-error.log

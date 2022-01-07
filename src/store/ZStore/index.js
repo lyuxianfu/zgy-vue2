@@ -1,13 +1,14 @@
-export const ZStore = {
+export default {
   namespaced: true,
   state: {
-    app: {
-      dataList: [],
-      loading: false,
-      totalCount: 0,
-      currentPage: 1,
+    page: {
+      app: {
+        dataList: [],
+        loading: false,
+        totalCount: 0,
+        currentPage: 1,
+      },
     },
-    page: {},
   },
   getters: {
     app(state) {

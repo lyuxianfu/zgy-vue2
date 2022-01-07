@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { ZStore } from "../../ZStore";
+import ZStore from "./ZStore";
 
 // import zgy from "../../index";
 
@@ -11,6 +11,6 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   modules: {
-    ZStore: ZStore,
+    ZStore,
   },
 });
