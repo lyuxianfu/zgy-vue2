@@ -1,8 +1,8 @@
 <template>
   <el-table
     ref="tableSort"
-    v-loading="$store.getters.page[pageName].loading"
-    :data="$store.getters.page[pageName].dataList"
+    v-loading="loading"
+    :data="dataList"
     :height="tableHeight"
     :element-loading-text="dataLoadingText"
     style="width: 100%"
@@ -35,9 +35,23 @@ export default {
       type: String,
       default: "app",
     },
+    isVuex: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  computed: {
+    loading() {
+      return this.$store.getters["ZStore/page"][this.pageName].loading;
+    },
+    dataList() {
+      return this.isVuex
+        ? this.$store.getters["ZStore/page"][this.pageName].dataList
+        : this.list;
+    },
   },
   created() {
-    console.log(this.pageName);
+    console.log("--->pageTable", this.pageName);
   },
   methods: {
     onSelect(data) {

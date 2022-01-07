@@ -1,9 +1,10 @@
 <template>
   <el-pagination
     style="text-align: right"
-    :total="$store.getters.page[pageName].totalCount"
+    :total="total"
     :page-sizes="[10, 20, 50, 100]"
     :page-size="defautlPageSize"
+    :current-page="currentPage"
     layout="total, sizes, prev, pager, next, jumper"
     @size-change="handleSizeChange"
     @current-change="handleCurrentChange"
@@ -16,11 +17,19 @@ export default {
   props: {
     pageName: {
       type: String,
-      default: "",
+      default: "app",
     },
     defautlPageSize: {
       type: Number,
       default: 10,
+    },
+  },
+  computed: {
+    currentPage() {
+      return this.$store.getters["ZStore/page"][this.pageName].currentPage;
+    },
+    total() {
+      return this.$store.getters["ZStore/page"][this.pageName].totalCount;
     },
   },
   methods: {

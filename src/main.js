@@ -3,10 +3,10 @@ import App from "./App.vue";
 import store from "./store";
 import "element-ui/lib/theme-chalk/index.css";
 import elementUi from "element-ui";
-import zgy from "../index";
+import components from "@/components";
 
 Vue.use(elementUi);
-Vue.use(zgy.components);
+Vue.use(components);
 
 Vue.config.productionTip = false;
 

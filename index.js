@@ -1,9 +1,10 @@
-import { ZStore } from "./lib/store/index.umd.min";
-import components from "./lib/components/index.umd.min";
-import Page from "./lib/utils/index.umd.min";
-console.log(ZStore);
+import { ZStore } from "./ZStore";
+import List from "./utils/List";
+import Page from "./utils/Page";
+import ZComponents from "./lib/index.umd.min";
 export default {
   ZStore,
-  components,
+  List,
   Page,
+  ZComponents,
 };

@@ -1,7 +1,7 @@
 export default class Page {
   constructor(formData, search, searchType = "request") {
     this.formData = formData;
-    this.pageName = this.formData.pageName ?? "app";
+    this.zgyPageName = this.formData.zgyPageName ?? "app";
     this.page = 1;
     this.pagesize = this.formData.pagesize ? this.formData.pagesize : 10;
     this.defaultFormData = { ...this.formData };
@@ -50,7 +50,8 @@ export default class Page {
   }
 
   //搜索
-  onSearch() {
+  onSearch(page = 1) {
+    this.page = page;
     return new Promise((resolve, reject) => {
       if (this.searchType === "request" || this.tempList.length === 0) {
         this.fetch()
@@ -143,6 +144,6 @@ export default class Page {
   //更改页码
   onChangePage = (page) => {
     this.page = page;
-    this.onSearch();
+    this.onSearch(this.page);
   };
 }

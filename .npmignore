@@ -13,3 +13,6 @@ lib/utils/demo.html
 lib/utils/index.common.js
 lib/index.common.js
 lib/demo.html
+.idea
+.eslintignore
+.eslintrc.js

@@ -31,22 +31,23 @@
       @handleTab="handleTab"
     ></ZTab>
     <el-main>
-      <ZTable table-height="calc(100vh - 160px)">
+      <ZTable page-name="home" table-height="calc(100vh - 260px)">
         <el-table-column label="序号" type="index"></el-table-column>
         <el-table-column label="姓名" prop="name"></el-table-column>
         <el-table-column label="性别" prop="sex"></el-table-column>
         <el-table-column label="年龄" prop="age"></el-table-column>
       </ZTable>
     </el-main>
-    <!--    <Zpagination-->
-    <!--      @onChangePageSize="list.onchangePageSize()"-->
-    <!--      @onChangePage="list.onChangePage()"-->
-    <!--    ></Zpagination>-->
+    <Zpagination
+      page-name="home"
+      @onChangePageSize="list.onchangePageSize"
+      @onChangePage="list.onChangePage"
+    ></Zpagination>
   </el-container>
 </template>
 
 <script>
-import List from "@/utils/List";
+import List from "@/../utils/List";
 import { fetch } from "@/api";
 export default {
   name: "App",
@@ -63,14 +64,14 @@ export default {
         name: "",
         age: "",
         sex: "",
+        zgyPageName: "home",
       },
       list: null,
     };
   },
   created() {
-    this.list = new List(this.formData, fetch, "request", (res) => {
-      console.log(res);
-      console.log(this.formData);
+    this.list = new List(this.formData, fetch, "request", () => {
+      console.log(this.$store.getters["ZStore/page"].home.dataList);
     });
   },
   methods: {
