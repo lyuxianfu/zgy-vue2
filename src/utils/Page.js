@@ -96,6 +96,11 @@ export default class Page {
     });
   }
 
+  //刷新（重新搜索当前页）
+  refresh() {
+    this.onSearch(this.page);
+  }
+
   //服务搜索
   fetch() {
     return new Promise((resolve, reject) => {

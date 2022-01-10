@@ -24,6 +24,9 @@
         <el-form-item>
           <el-button @click="list.onReset()">重置</el-button>
         </el-form-item>
+        <el-form-item>
+          <el-button @click="list.refresh()">刷新</el-button>
+        </el-form-item>
       </el-form>
     </el-header>
     <ZTab
@@ -38,10 +41,10 @@
         <el-table-column label="年龄" prop="age"></el-table-column>
       </ZTable>
     </el-main>
-    <Zpagination
+    <ZPagination
       @onChangePageSize="list.onchangePageSize"
       @onChangePage="list.onChangePage"
-    ></Zpagination>
+    ></ZPagination>
   </el-container>
 </template>
 

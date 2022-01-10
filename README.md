@@ -103,6 +103,8 @@ class List
 
 @function onSearch 搜索
 
+@function refresh 刷新（当前页的搜索）
+
 @function onchangePageSize 一页数量
 
 @function onChangePage 更改当前页
