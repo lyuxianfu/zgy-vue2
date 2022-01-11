@@ -50,10 +50,16 @@ export default class Page {
   }
 
   //搜索
-  onSearch(page = 1) {
+  onSearch(page = 1, refresh = false) {
+    console.log("refresh", refresh);
     this.page = page;
     return new Promise((resolve, reject) => {
-      if (this.searchType === "request" || this.tempList.length === 0) {
+      if (
+        this.searchType === "request" ||
+        this.tempList.length === 0 ||
+        refresh
+      ) {
+        // 刷新的时候 列表没有数据的时候 搜索方式是request 一定是服务请求
         this.fetch()
           .then((res) => {
             resolve(res);
@@ -97,8 +103,9 @@ export default class Page {
   }
 
   //刷新（重新搜索当前页）
-  refresh() {
-    this.onSearch(this.page);
+  onRefresh() {
+    console.log("refresh-->");
+    this.onSearch(this.page, true);
   }
 
   //服务搜索

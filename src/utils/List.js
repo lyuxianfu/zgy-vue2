@@ -13,13 +13,13 @@ export default class List extends Page {
     super(formData, search, searchType);
     this.afterSearch = afterSearch;
   }
-  onSearch(page = 1) {
+  onSearch(page = 1, refresh = false) {
     return new Promise((resolve) => {
       store.commit("ZStore/setLoading", {
         pageName: this.zgyPageName,
         value: true,
       });
-      super.onSearch(page).then((res) => {
+      super.onSearch(page, refresh).then((res) => {
         store.commit("ZStore/setTotalCount", {
           pageName: this.zgyPageName,
           value: res.totalCount,
