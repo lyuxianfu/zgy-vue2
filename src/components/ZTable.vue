@@ -1,7 +1,7 @@
 <template>
   <el-table
     ref="tableSort"
-    v-loading="loading"
+    v-loading="isVuex && loading"
     :data="dataList"
     :height="tableHeight"
     :element-loading-text="dataLoadingText"
@@ -31,6 +31,10 @@ export default {
         return [];
       },
     },
+    listLoading: {
+      type: Boolean,
+      default: false,
+    },
     pageName: {
       type: String,
       default: "app",
@@ -42,7 +46,9 @@ export default {
   },
   computed: {
     loading() {
-      return this.$store.getters["ZStore/page"][this.pageName].loading;
+      return this.isVuex
+        ? this.$store.getters["ZStore/page"][this.pageName].loading
+        : this.listLoading;
     },
     dataList() {
       return this.isVuex
