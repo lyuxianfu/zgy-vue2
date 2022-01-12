@@ -3,7 +3,7 @@ export default class Page {
     this.formData = formData;
     this.zgyPageName = this.formData.zgyPageName ?? "app";
     this.page = 1;
-    this.pagesize = this.formData.pagesize ? this.formData.pagesize : 10;
+    this.pagesize = this.formData.pagesize ?? 10;
     this.defaultFormData = { ...this.formData };
     this.search = search;
     this.searchType = searchType;
@@ -21,7 +21,7 @@ export default class Page {
     return new Promise((resolve, reject) => {
       const keys = Object.keys(this.formData);
       this.page = 1;
-      this.pagesize = 10;
+      this.pagesize = this.formData.pagesize ?? 10;
       let noResetKey = [];
       if (noResetParam instanceof Array) {
         noResetKey = [...noResetParam];
