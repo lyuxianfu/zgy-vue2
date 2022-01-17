@@ -1,6 +1,6 @@
 {
   "name": "zgy-vue2",
-  "version": "0.1.12",
+  "version": "0.1.14",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -9,6 +9,8 @@
     "bulid:lib": "vue-cli-service build --target lib --name index --dest lib src/index.js"
   },
   "dependencies": {
+    "chalk": "4.1.2",
+    "commander": "^8.3.0",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.6",
     "vue": "^2.6.11",
@@ -38,5 +40,9 @@
       "vue-cli-service lint",
       "git add"
     ]
+  },
+  "bin": {
+    "zgyVue2": "bin/zgyVue2.js",
+    "zgyVue2-add": "bin/zgyVue2-add.js"
   }
 }

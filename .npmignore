@@ -17,3 +17,4 @@ lib/demo.html
 .eslintignore
 .eslintrc.js
 yarn-error.log
+bin/
