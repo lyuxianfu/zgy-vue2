@@ -148,7 +148,7 @@ export default class Page {
   }
 
   // 更改一页条数
-  onchangePageSize = (size) => {
+  onChangePageSize = (size) => {
     this.pagesize = size;
     this.onSearch();
   };
