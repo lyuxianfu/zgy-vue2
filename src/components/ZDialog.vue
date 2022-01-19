@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: "EnterManaDialog",
+  name: "ZDialog",
   props: {
     dialogVisible: {
       type: Boolean,
@@ -75,4 +75,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.dialog-footer {
+  display: flex;
+  justify-content: center;
+}
+</style>
