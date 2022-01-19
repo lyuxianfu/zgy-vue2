@@ -90,6 +90,7 @@ export default class Page {
             let list = this.tempList;
             keys.map((key) => {
               list = this.getLocalListByKey(list, key);
+              console.log(list);
             });
             res.totalCount = list.length;
             res.data = list;
@@ -104,7 +105,6 @@ export default class Page {
 
   //刷新（重新搜索当前页）
   onRefresh() {
-    console.log("refresh-->");
     this.onSearch(this.page, true);
   }
 
@@ -138,9 +138,10 @@ export default class Page {
   //本地搜索
   getLocalListByKey(list, key) {
     const newList = [];
+    if (key === "zgyPageName") return list;
     if (!this.formData[key] || this.formData[key] === "") return list;
     list.map((item) => {
-      if (item[key].indexOf(this.formData[key]) > -1) {
+      if (item[key].toString().indexOf(this.formData[key]) > -1) {
         newList.push(item);
       }
     });

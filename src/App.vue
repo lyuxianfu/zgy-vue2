@@ -25,7 +25,7 @@
           <el-button @click="list.onReset()">重置</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button @click="list.refresh()">刷新</el-button>
+          <el-button @click="list.onRefresh()">刷新</el-button>
         </el-form-item>
       </el-form>
     </el-header>
@@ -34,7 +34,7 @@
       @handleTab="handleTab"
     ></ZTab>
     <el-main>
-      <ZTable table-height="calc(100vh - 260px)">
+      <ZTable table-height="calc(100vh - 260px)" page-name="test">
         <el-table-column label="序号" type="index"></el-table-column>
         <el-table-column label="姓名" prop="name"></el-table-column>
         <el-table-column label="性别" prop="sex"></el-table-column>
@@ -42,7 +42,8 @@
       </ZTable>
     </el-main>
     <ZPagination
-      @onChangePageSize="list.onchangePageSize"
+      page-name="test"
+      @onChangePageSize="list.onChangePageSize"
       @onChangePage="list.onChangePage"
     ></ZPagination>
   </el-container>
@@ -63,6 +64,7 @@ export default {
         { type: 2, label: "女" },
       ],
       formData: {
+        zgyPageName: "test",
         name: "",
         age: "",
         sex: "",
@@ -71,7 +73,7 @@ export default {
     };
   },
   created() {
-    this.list = new List(this.formData, fetch, "request", () => {
+    this.list = new List(this.formData, fetch, "local", () => {
       console.log(this.$store.getters["ZStore/page"]);
     });
   },
