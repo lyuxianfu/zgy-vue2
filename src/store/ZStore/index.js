@@ -20,7 +20,6 @@ export default {
   },
   mutations: {
     createPage(state, data) {
-      console.log("--->createPage", data);
       state.page = {
         ...state.page,
         [data]: {
@@ -32,19 +31,15 @@ export default {
       };
     },
     setLoading(state, data) {
-      console.log("--->setLoading", data.pageName, data.value);
       state.page[data.pageName].loading = data.value;
     },
     setDataList(state, data) {
-      console.log("--->setDataList", data.pageName, data.value);
       state.page[data.pageName].dataList = data.value;
     },
     setTotalCount(state, data) {
-      console.log("--->setTotalCount", data.pageName, data.value);
       state.page[data.pageName].totalCount = data.value;
     },
     setCurrentPage(state, data) {
-      console.log("--->setCurrentPage", data.pageName, data.value);
       state.page[data.pageName].currentPage = data.value;
     },
   },
