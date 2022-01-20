@@ -42,6 +42,7 @@ function getPagination() {
 }
 
 function writeFile(config = {}) {
+  console.log(config);
   fs.writeFile(`./${viewName}.vue`, template(config, viewName), (err) => {
     if (err) console.log(err);
     console.log("\n");
@@ -62,10 +63,10 @@ async function create() {
 create();
 // writeFile({
 //   searchConfig: {
-//     dateRange: { amount: 1, keys: ["date"] },
-//     date: { amount: 1, keys: ["date"] },
-//     select: { amount: 1, keys: ["date"] },
-//     input: { amount: 1, keys: ["date"] },
+//     dateRange: { amount: 1, keys: ["date1"] },
+//     date: { amount: 1, keys: ["date1"] },
+//     select: { amount: 1, keys: ["date2"] },
+//     input: { amount: 1, keys: ["date3"] },
 //   },
 //   tabsConfig: [
 //     { title: "", value: "" },
