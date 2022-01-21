@@ -1,6 +1,6 @@
 {
   "name": "zgy-vue2",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -13,6 +13,7 @@
     "commander": "^8.3.0",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.6",
+    "ora": "5.0.0",
     "vue": "^2.6.11",
     "vuex": "^3.4.0"
   },

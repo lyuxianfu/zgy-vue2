@@ -18,6 +18,16 @@ module.exports = function main(data) {
       ${data.tabsConfig ? '<ZTab :tabs="tabs" :active-name=""></ZTab>' : ""}
       ${table(data.tableConfig, data.viewName)}
       ${
+        data.descriptions
+          ? ` <ZDescriptions
+        :column="3"
+        :options="[
+          { title: '', desc: xxx },
+        ]"
+      ></ZDescriptions>`
+          : ""
+      }
+      ${
         data.pagination
           ? `<ZPagination
         page-name="${data.viewName}"

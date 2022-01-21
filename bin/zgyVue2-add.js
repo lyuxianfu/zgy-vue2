@@ -3,6 +3,7 @@
 const program = require("commander");
 const fs = require("fs");
 const chalk = require("chalk");
+const ora = require("ora");
 const inquirer = require("inquirer");
 const files = fs.readdirSync("./");
 const getSearchConfig = require("./searchConfig");
@@ -32,6 +33,15 @@ if (isExist) {
 //开始创建一个view
 console.log(chalk.green(`add ${viewName} starting`));
 
+function createFast() {
+  return inquirer.prompt({
+    name: "required",
+    type: "confirm",
+    message: "是否快速创建？",
+    default: true,
+  });
+}
+
 function getPagination() {
   return inquirer.prompt({
     name: "required",
@@ -41,23 +51,58 @@ function getPagination() {
   });
 }
 
+function getDescriptions() {
+  return inquirer.prompt({
+    name: "required",
+    type: "confirm",
+    message: "是否需要描述框",
+    default: false,
+  });
+}
+
 function writeFile(config = {}) {
-  console.log(config);
+  const spinner = ora("Create...");
+  spinner.start();
   fs.writeFile(`./${viewName}.vue`, template(config, viewName), (err) => {
     if (err) console.log(err);
     console.log("\n");
     console.log(chalk.green("Add successfully! \n"));
     console.log("\n");
+    spinner.succeed();
   });
 }
 
 async function create() {
   const config = {};
-  config.searchConfig = await getSearchConfig();
-  config.tabsConfig = await getTabsConfig();
-  config.tableConfig = await getTableConfig();
-  config.pagination = await getPagination();
-  writeFile(config);
+  const isCreateFast = await createFast();
+  if (isCreateFast) {
+    writeFile({
+      searchConfig: {
+        dateRange: { amount: 1, keys: ["date"] },
+        date: { amount: 1, keys: ["startDate"] },
+        select: { amount: 1, keys: ["select"] },
+        input: { amount: 1, keys: ["input"] },
+      },
+      tabsConfig: [
+        { title: "", value: "" },
+        { title: "", value: "" },
+      ],
+      descriptions: true,
+      tableConfig: [
+        { type: "selection", label: "" },
+        { type: "index", label: "序号" },
+        { type: "", label: "" },
+      ],
+      pagination: true,
+    });
+  } else {
+    config.searchConfig = await getSearchConfig();
+    config.tabsConfig = await getTabsConfig();
+    config.descriptions = await getDescriptions();
+    config.tableConfig = await getTableConfig();
+    config.pagination = await getPagination();
+    writeFile(config);
+  }
 }
 
 create();

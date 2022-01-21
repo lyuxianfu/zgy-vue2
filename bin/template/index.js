@@ -18,7 +18,6 @@ function writeData(config, viewName) {
 }
 
 module.exports = function template(config, viewName) {
-  console.log(config);
   const data = { formData: {} };
   if (config.tabsConfig) {
     data.tabs = config.tabsConfig;
@@ -28,6 +27,7 @@ module.exports = function template(config, viewName) {
     ${config.searchConfig ? header(config.searchConfig) : ""}
     ${main({
       tabsConfig: config.tabsConfig,
+      descriptions: config.descriptions,
       tableConfig: config.tableConfig,
       pagination: config.pagination,
       viewName,
