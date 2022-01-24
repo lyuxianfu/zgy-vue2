@@ -9,18 +9,19 @@
     center
   >
     <slot></slot>
-    <span v-if="footer" class="dialog-footer">
-      <slot name="footer">
-        <el-button @click="onClose">取 消</el-button>
-        <el-button type="primary" @click="onConfirm">
-          {{ confirmText }}
-        </el-button>
-      </slot>
+    <span class="dialog-footer" slot="footer" v-if="footer">
+      <el-button @click="onClose">取 消</el-button>
+      <el-button type="primary" @click="onConfirm">
+        {{ confirmText }}
+      </el-button>
     </span>
   </el-dialog>
 </template>
 
 <script>
+/*
+ *  打包编译之后有问题，尚未解决，会出现slot=footer 下默认为undefind，所以要替换低下按钮，要先隐藏footer
+ * */
 export default {
   name: "ZDialog",
   props: {
@@ -75,7 +76,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .dialog-footer {
   display: flex;
   justify-content: center;

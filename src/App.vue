@@ -39,6 +39,11 @@
         <el-table-column label="姓名" prop="name"></el-table-column>
         <el-table-column label="性别" prop="sex"></el-table-column>
         <el-table-column label="年龄" prop="age"></el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="">
+            <el-button @click="visible = true">查看</el-button>
+          </template>
+        </el-table-column>
       </ZTable>
     </el-main>
     <ZPagination
@@ -46,6 +51,30 @@
       @onChangePageSize="list.onChangePageSize"
       @onChangePage="list.onChangePage"
     ></ZPagination>
+    <ZDialog
+      title="修改"
+      width="500px"
+      :dialog-visible="visible"
+      @onClose="visible = false"
+      @onConfirm="visible = false"
+    >
+      <el-form
+        ref="changeForm"
+        label-position="left"
+        label-width="160px"
+        style="margin-left: 45px"
+      >
+        <el-form-item label="工时" prop="paytimes">
+          <el-input v-model="formData.name"></el-input>
+        </el-form-item>
+        <el-form-item label="工资" prop="paymoney">
+          <el-input v-model="formData.age"></el-input>
+        </el-form-item>
+        <el-form-item label="备注">
+          <el-input v-model="formData.name"></el-input>
+        </el-form-item>
+      </el-form>
+    </ZDialog>
   </el-container>
 </template>
 
@@ -58,6 +87,7 @@ export default {
 
   data() {
     return {
+      visible: false,
       sex: [
         { type: 0, label: "全部" },
         { type: 1, label: "男" },
